@@ -19,7 +19,7 @@ class HomestayController extends Controller
     public function index()
     {
         $homestay = homestay::all();
-        return view('lihatdata', compact('homestay'));
+        return view('homestay.lihatdata', compact('homestay'));
 
     }
 
@@ -30,7 +30,7 @@ class HomestayController extends Controller
      */
     public function create()
     {
-        return view('insHomestay');
+        return view('homestay.insHomestay');
     }
 
     /**
@@ -49,7 +49,7 @@ class HomestayController extends Controller
         $home->harga = $request->input('harga');
         $home->status = $request->input('status');
         if($home->save()){
-            return view('insHomestay', compact('home'));
+            return view('homestay.insHomestay', compact('home'));
         }else{
             throw new HttpResponseException(new JsonResponse(['Fail input data'], Response::HTTP_INTERNAL_SERVER_ERROR));
         }
@@ -75,7 +75,7 @@ class HomestayController extends Controller
     public function edit($id)
     {
         $homestay = homestay::find($id);
-        return view('edit', compact('homestay'));
+        return view('homestay.edit', compact('homestay'));
     }
 
     /**
@@ -96,7 +96,7 @@ class HomestayController extends Controller
         $homestay->status =$request->input('status');
         $homestay->save();
 
-        return redirect('lihatdata');
+        return redirect('homestay.lihatdata');
     }
 
     /**
@@ -109,6 +109,6 @@ class HomestayController extends Controller
     {
         $homestay = homestay::find($id);
         $homestay->delete();
-        return redirect('lihatdata');
+        return redirect('homestay.lihatdata');
     }
 }

@@ -21,7 +21,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route:: get('/lihatdata', 'HomestayController@index');
 Route:: get('/inshomestay', 'HomestayController@create');
-Route:: get('/edit/{id}', 'HomestayController@edit');
+Route:: get('/edithomestays/{id}', 'HomestayController@edit');
+Route:: get('/editRoles/{id}', 'RoleController@edit');
 Route:: get('/tambahrole', 'RoleController@create');
 Route:: get('/lihatrole', 'RoleController@index');
 
@@ -30,8 +31,8 @@ Route:: post('/rolepost', 'RoleController@store');
 Route:: post('/homestaypost', 'HomestayController@store');
 
 
-Route:: put('/editok/{id}', 'HomestayController@update');
-//Route:: put('/editok/{id}', 'HomestayController@update');
+Route:: put('/edithomestay/{id}', 'HomestayController@update');
+Route:: put('/editrole/{id}', 'RoleController@update');
 
 
 Route:: delete('/deleteHomestay/{id}', 'HomestayController@destroy');

@@ -16,7 +16,9 @@
                                     <th>Deskripsi</th>
                                     <th>Harga</th>
                                     <th>Status</th>
-                                    <th>Action</th>
+                                    @if(Auth::user()){
+                                    <th>Action</th>}
+                                        @endif
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -28,14 +30,16 @@
                                         <td>{{$a->deskrpsi}}</td>
                                         <td>{{$a->harga}}</td>
                                         <td>{{$a->status}}</td>
+                                        @if(Auth::user()){
                                         <td>
-                                            <a href="{{"/edit/".$a->id}}" class="btn btn-primary">Edit</a> |
+                                            <a href="{{"/edithomestays/".$a->id}}" class="btn btn-primary">Edit</a> |
                                             <form action="{{url('/deleteHomestay/'.$a->id)}}" method="post">
                                                 {{csrf_field()}}
                                                 <input type="hidden" name="_method" value="delete">
                                                 <button type="submit" class="btn btn-danger">Delete</button>
                                             </form>
-                                        </td>
+                                        </td>}
+                                            @endif
                                     </tr>
                                 @endforeach
                                 </tbody>

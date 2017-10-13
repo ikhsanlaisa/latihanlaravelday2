@@ -16,7 +16,7 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::all();
-        return view('viewRole', compact('roles'));
+        return view('role.viewRole', compact('roles'));
     }
 
     /**
@@ -27,7 +27,7 @@ class RoleController extends Controller
     public function create()
     {
         $permission = Permission::all();
-        return view('TambahRole', compact('permission'));
+        return view('role.TambahRole', compact('permission'));
     }
 
     /**
@@ -63,7 +63,9 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $role = Role::find($id);
+        $permission = Permission::all();
+        return view('role.editRole', compact('permission','role'));
     }
 
     /**
@@ -75,7 +77,9 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $role = Role::find($id);
+        $role->syncPermissions($request->input('permissions'));
+        return redirect('lihatrole');
     }
 
     /**
