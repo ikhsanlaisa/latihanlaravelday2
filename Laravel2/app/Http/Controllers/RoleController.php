@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\homestay;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
-class HomestayController extends Controller
+class RoleController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -18,9 +14,8 @@ class HomestayController extends Controller
      */
     public function index()
     {
-        $homestay = homestay::all();
-        return view('lihatdata', compact('homestay'));
-
+        $roles = Role::all();
+        return view('viewRole', compact('roles'));
     }
 
     /**
@@ -86,6 +81,6 @@ class HomestayController extends Controller
      */
     public function destroy($id)
     {
-
+        //
     }
 }

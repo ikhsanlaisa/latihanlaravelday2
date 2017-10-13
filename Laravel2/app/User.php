@@ -4,10 +4,19 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Traits\HasRoles;
+use Spatie\Permission\Models\Permission;
+use App\Role;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use HasRoles;
+
+
+
+//    $role = Role::create(['name' => 'writer']);
+//    $permission = Permission::create(['name' => 'edit articles']);
 
     /**
      * The attributes that are mass assignable.

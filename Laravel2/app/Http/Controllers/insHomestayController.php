@@ -11,6 +11,10 @@ use Illuminate\Http\Response;
 
 class insHomestayController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -48,7 +52,7 @@ class insHomestayController extends Controller
         $home->harga = $request->input('harga');
         $home->status = $request->input('status');
         if($home->save()){
-            throw new HttpResponseException(new JsonResponse(['Success input data'], Response::HTTP_INTERNAL_SERVER_ERROR));
+           return view('insHomestay', compact('home'));
         }else{
             throw new HttpResponseException(new JsonResponse(['Fail input data'], Response::HTTP_INTERNAL_SERVER_ERROR));
         }
@@ -95,7 +99,7 @@ class insHomestayController extends Controller
         $homestay->status =$request->input('status');
         $homestay->save();
 
-        return redirect('homestay');
+        return redirect('lihatdata');
     }
 
     /**
@@ -108,6 +112,6 @@ class insHomestayController extends Controller
     {
         $homestay = homestay::find($id);
         $homestay->delete();
-        return redirect('homestay');
+        return redirect('lihatdata');
     }
 }

@@ -2,15 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\homestay;
 use Illuminate\Http\Request;
 
-class HomestayController extends Controller
+class SaldoController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -18,9 +13,7 @@ class HomestayController extends Controller
      */
     public function index()
     {
-        $homestay = homestay::all();
-        return view('lihatdata', compact('homestay'));
-
+        //
     }
 
     /**
@@ -86,6 +79,6 @@ class HomestayController extends Controller
      */
     public function destroy($id)
     {
-
+        //
     }
 }
