@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
 {
@@ -25,7 +26,8 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        $permission = Permission::all();
+        return view('TambahRole', compact('permission'));
     }
 
     /**
@@ -36,7 +38,10 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $role = Role::create(["name" => $request->input("name")]);
+        $role->syncPermissions($request->input('permissions'));
+        return redirect('lihatrole');
     }
 
     /**
@@ -81,6 +86,8 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $role = Role::find($id);
+        $role->delete();
+        return redirect('lihatrole');
     }
 }

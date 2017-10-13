@@ -30,7 +30,7 @@ class HomestayController extends Controller
      */
     public function create()
     {
-        //
+        return view('insHomestay');
     }
 
     /**
@@ -41,7 +41,18 @@ class HomestayController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $home = new homestay();
+        $home->nama = $request->input('nama');
+        $home->alamat = $request->input('alamat');
+        $home->no_telp = $request->input('no_telp');
+        $home->deskrpsi = $request->input('deskrpsi');
+        $home->harga = $request->input('harga');
+        $home->status = $request->input('status');
+        if($home->save()){
+            return view('insHomestay', compact('home'));
+        }else{
+            throw new HttpResponseException(new JsonResponse(['Fail input data'], Response::HTTP_INTERNAL_SERVER_ERROR));
+        }
     }
 
     /**
@@ -63,7 +74,8 @@ class HomestayController extends Controller
      */
     public function edit($id)
     {
-        //
+        $homestay = homestay::find($id);
+        return view('edit', compact('homestay'));
     }
 
     /**
@@ -75,7 +87,16 @@ class HomestayController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $homestay = homestay::find($id);
+        $homestay->nama = $request->input('nama');
+        $homestay->alamat = $request->input('alamat');
+        $homestay->no_telp = $request->input('no_telp');
+        $homestay->deskrpsi = $request->input('deskrpsi');
+        $homestay->harga =$request->input('harga');
+        $homestay->status =$request->input('status');
+        $homestay->save();
+
+        return redirect('lihatdata');
     }
 
     /**
@@ -86,6 +107,8 @@ class HomestayController extends Controller
      */
     public function destroy($id)
     {
-
+        $homestay = homestay::find($id);
+        $homestay->delete();
+        return redirect('lihatdata');
     }
 }

@@ -21,7 +21,7 @@
                             @foreach($roles as $a)
                                 <tr>
                                     <td>{{$a->name}}</td>
-                                    <td></td>
+                                    <td> {{ $a->permissions()->count()  }}</td>
                                     <td align="center">
                                         <a href="{{"/edit/".$a->id}}" class="btn btn-primary">Edit</a> |
                                         <form action="{{url('/deleteRole/'.$a->id)}}" method="post">
