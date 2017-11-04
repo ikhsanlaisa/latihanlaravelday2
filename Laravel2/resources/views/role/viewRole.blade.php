@@ -21,13 +21,13 @@
                             @foreach($roles as $a)
                                 <tr>
                                     <td>{{$a->name}}</td>
-                                    <td> {{ $a->permissions()->count()  }}</td>
+                                    <td> {{ $a->permissions()->count()}}</td>
                                     <td align="center">
                                         <a href="{{"/editRoles/".$a->id}}" class="btn btn-primary">Edit</a> |
                                         <form action="{{url('/deleteRole/'.$a->id)}}" method="post">
                                             {{csrf_field()}}
                                             <input type="hidden" name="_method" value="delete">
-                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure to delete this data');">Delete</button>
                                         </form>
                                     </td>
                                 </tr>

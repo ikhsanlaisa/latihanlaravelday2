@@ -16,7 +16,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 form-control-label">Nama :</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="nama"
+                                    <input type="text" class="form-control" name="nama" value="{{$homestay->nama}}"
                                            placeholder="Masukkan Nama Homestay" required>
                                 </div>
                             </div>
@@ -25,7 +25,8 @@
                                 <label class="col-sm-2 form-control-label">Alamat :</label>
                                 <div class="col-sm-9">
                                     <textarea type="text" class="form-control" name="alamat"
-                                              placeholder="Masukkan Alamat" required></textarea>
+                                              placeholder="Masukkan Alamat"  required>{{$homestay->alamat}}</textarea>
+
                                 </div>
                             </div>
 

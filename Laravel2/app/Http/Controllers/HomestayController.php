@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\homestay;
+use App\Saldo;
 use Illuminate\Http\Request;
 
 class HomestayController extends Controller
@@ -19,7 +20,8 @@ class HomestayController extends Controller
     public function index()
     {
         $homestay = homestay::all();
-        return view('homestay.lihatdata', compact('homestay'));
+        $saldo = Saldo::all();
+        return view('homestay.lihatdata')->with(['homstay'=>$homestay, 'saldo'=>$saldo]);
 
     }
 

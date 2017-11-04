@@ -11,6 +11,7 @@
                         <form class="form-horizontal" method="post" action="{{url('/editrole/'.$role->id)}}">
                             {{ csrf_field() }}
                             <input type="hidden" name="_method" value="put">
+
                             <div class="form-group row">
                                 <label class="col-sm-2 form-control-label">Nama Role:</label>
                                 <div class="col-sm-9">
@@ -19,17 +20,20 @@
                                 </div>
                             </div>
                             <table class=" table table-bordered">
+                                @foreach($permission as $controller => $item)
                                 <tr>
                                     <td class="text-center" style="vertical-align: middle;">Permission</td>
                                     <td>
-                                        @foreach($permission as $controller)
+                                        @foreach($item as $permissions)
                                          <div class="col-sm-9">
-                                            <input type="checkbox" name="permissions[]" value="{{$controller->name}}">
-                                            {{strtoupper($controller->name)}}
+                                            <input type="checkbox" name="permissions[]" value="{{$permissions." ".$controller}}">
+                                            {{$role->hasPermissionTo($permissions." ".$controller) ? "checked" : ""}}>
+                                            {{$permissions}}
                                         </div>
                                          @endforeach
                                     </td>
                                 </tr>
+                                    @endforeach
                             </table>
 
                             <div class="form-group">
@@ -39,6 +43,7 @@
                                     </button>
                                     <a href="/lihatrole" class="btn btn-primary">Lihat Data</a>
                                 </div>
+                            </div>
                         </form>
                     </div>
                 </div>
